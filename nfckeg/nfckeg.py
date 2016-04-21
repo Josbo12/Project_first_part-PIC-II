@@ -1,6 +1,6 @@
 from commandlist import CommandList
 
-import sensor as sen
+import sensors as sen
 import channels as ch
 #import actions as ac
 import time
@@ -20,8 +20,10 @@ class nfckeg(object):
          self.channels = []
 
          self.channels.append(ch.TelegramChannel())
-#         self.actions = []
-#         self.actions.append(ac.MusicPlayer())
+         self.sensors = []
+         self.sensors.append(sen.FlowSensor())
+         self.actions = []
+         self.actions.append(ac.MusicPlayer())
 
     def _get_config(self):
         with open("nfckeg.yaml") as f:
@@ -70,9 +72,14 @@ class nfckeg(object):
 
         target_detected = True
         while target_detected:
+
+            sen.FlowSensor()
+
+
+
             #detectem una targeta
-            for s in self.sensors:
-                
+
+
 
 
 
