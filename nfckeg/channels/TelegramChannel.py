@@ -3,10 +3,10 @@ from Channel import Channel
 import telepot
 
 
-class AmbrosioBot(telepot.Bot):
+class BEERBot(telepot.Bot):
     """AmbrosioBot is my telegram bot"""
     def __init__(self, token):
-        super(AmbrosioBot, self).__init__(token)
+        super(BEERBot, self).__init__(token)
         self.clist = None
         self.chat_id = None
 
@@ -31,7 +31,7 @@ class TelegramChannel(Channel):
     """Channel class, received commands from telegram"""
     def __init__(self, name="TelegramChannel"):
         super(TelegramChannel, self).__init__(name)
-        self.bot = AmbrosioBot(".....")
+        self.bot = BEERBoot("clau bot")
         self.messages = []
         self.bot.set_list(self.messages)
         self.bot.notifyOnMessage()
