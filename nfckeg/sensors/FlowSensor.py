@@ -12,8 +12,9 @@ class FlowSensor():
         read_value=True
         delay = S
         self.values=list()
+        quantity_flow=0
         while read_value:
-            quantity_flow = #read sensor
+            quantity_flow = sensor #guarda les dades del sensor en una variable
             self.values.append(quantity_flow)
             time.sleep(S)
 
@@ -25,3 +26,4 @@ class FlowSensor():
         pass
 
     def reset_cumulative()
+        reset sensor
