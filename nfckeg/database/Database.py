@@ -1,43 +1,33 @@
 import sys
 import sqlite3
+from Action import Action
 
 
-
-class Database():
+class Database(Action):
     print "eiii"
-    def save_data(self, user,nfc,username):
+
+    def __init__(self, cfg=None, name="Database"):
+         super(Database, self).__init__(cfg, name)
+
+    def save_data(self, cfg=None):
 
         conn = sqlite3.connect('nfcdatabase.db')
         cursor = conn.execute("SELECT user, nfc, username from users")
-        aa=1
-        print "adeu"
-        for row in cursor:
-            if row[0] == user:
-                aa=2
-                break
-            if row[1] == nfc:
-                aa=2
-            if row[2] == username:
-                aa==2
-                break
-        if aa == 1:
-                conn.execute("insert into users (user,nfc,username) values (?, ?, ?)",
-                         (user,
-                          nfc,
-                          username))
-                conn.commit()
-                conn.close()
-                print "hola"
-
-                return True
-        else:
-                return False
-        print "hola11"
+        user = self.cfg["database"]["user"]
+        nfc = self.cfg["database"]["nfc"]
+        username = self.cfg["database"]["username"]
+        conn.execute('insert into users (user,nfc,username)' +
+                    'values (?, ?, ?);',
+                    (user, nfc, username))
+        conn.commit()
+        conn.close()
 
 
-    def get_data():
+
+    def get_data(self):
         conn = sqlite3.connect('nfcdatabase.db')
         cursor = conn.execute("SELECT user,nfc,username from users")
         data = [row for row in cursor]
+        print data
         conn.close()
         return data
