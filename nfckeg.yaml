@@ -1,10 +1,10 @@
 database:
   user:
-     pablito
-     eric
+     - pablito
+     - eric
   nfc:
-     33333334
-     sasadsasdasd
+     - 33333334
+     - sasadsasdasd
   username:
-     josbo12
-     kinhuuuuuu
+     - josbo12
+     - kinhuuuuuu
