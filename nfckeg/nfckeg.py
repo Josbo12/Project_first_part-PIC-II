@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import database as db
+import sensors as sen
 #import channels as ch
 #import actions as ac
 import sys
@@ -11,7 +12,7 @@ import json
 #import yaml
 #import json
 
-tagID = sys.argv[1]
+
 #nfc = sys.argv[2]
 #username = sys.argv[3]
 class nfckeg(object):
@@ -21,17 +22,29 @@ class nfckeg(object):
              super(nfckeg, self).__init__()
              print "jajajajajaj"
              #self.save_data(user, nfc, username)
-
+             tagID = 33333334
              #self.save_data(user, nfc, username)
              self._get_config()
              self.database = []
              self.database.append(db.Database(self.cfg))
-             #self.database.append(db.Database())
-             for b in self.database:
 
-                b.save_data(self.cfg) #guardar usuaris desde fitxer configuracio
-                b.get_data() # mostrar tots els usuaris guardats
+             self.sensors = []
+             self.sensors.append(sen.NfcSensor(tagID))
+             #self.sensors.append(sen.FlowSensor(tagID))
+             #s
+             #self.database.append(db.Database())
+             #for b in self.database:
+
+            #    b.save_data(self.cfg) #guardar usuaris desde fitxer configuracio
+            #    b.get_data() # mostrar tots els usuaris guardats
+            #    break
+
+             for a in self.sensors:
+
+                a.setup(tagID) #guardar usuaris desde fitxer configuracio
+
                 break
+
 
         def _get_config(self):
             with open("nfckeg.yaml") as f:
