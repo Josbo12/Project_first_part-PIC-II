@@ -1,31 +1,28 @@
 import time
 
-from NfcSensor import Nfcsensor as Nf
 
-class FlowSensor():
+from Action import Action
+
+class FlowSensor(Action):
 
 
     def __init__(self, name="FlowSensor"):
         super(FlowSensor, self).__init__(name)
-        self.Nfcsensor=[]
-        self.Nfcsensor.append(NfcSensor())
+        print "init flow"
 
 
+    def setup(self):
+
+        while True:
+            delay = 5
+            self.values=list()
+            
 
 
-    def setup(self, nfc):
-
-        for a in self.Nfcsensor:
-            a.setup(nfc)
-
-        delay = 5
-        self.values=list()
-        quantity_flow=0
-
-        while self.nfc == "NFC OK":
             quantity_flow = 20 #sensor  #guarda les dades del sensor en una variable
             self.values.append(quantity_flow)
-            time.sleep(5)
+            time.sleep(5)       #segons entre lectura i lectura
+            print quantity_flow
 
     def get_data():
         print self.values
@@ -33,5 +30,6 @@ class FlowSensor():
     def  get_cumulative():
         pass
 
-    def reset_cumulative()
+    def reset_cumulative():
+        pass
         #reset sensor
