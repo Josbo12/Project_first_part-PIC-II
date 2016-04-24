@@ -2,4 +2,4 @@ from Database import Database
 
 __all__ = ["Database"]
 
-print " adeu222"
+print " init database"
