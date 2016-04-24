@@ -1,24 +1,34 @@
 import time
 import sqlite3
+from FlowSensor import FlowSensor
+from Action import Action
 
-class NfcSensor():
+
+class NfcSensor(Action):
 
 
     def __init__(self, name="NfcSensor"):
         super(NfcSensor, self).__init__(name)
+        self.FlowSensor=[]
+        self.FlowSensor.append(FlowSensor())
+
 
 
     def setup(self, tagID):
 
 
-        conn = sqlite3.connect('dadestask2.db')
-        cursor = conn.execute("SELECT nfc from users where nfc=?" ,(tagID) )
+        conn = sqlite3.connect('nfcdatabase.db')
+        cursor = conn.execute("SELECT nfc from users where nfc=?" , (tagID,) )
         exist_nfc=cursor.fetchone()
+        print "setupnfc", exist_nfc
 
-        if exist_nfc != None:
-            self.nfc = "NFC OK"
+        if exist_nfc == None:
+
+            self.nfc = 1
+            for a in self.FlowSensor:
+                a.setup()
         else:
-            self.nfc= "NFC WRONG"
+            self.nfc= 0
 
     def get_data():
         print self.values
@@ -26,5 +36,6 @@ class NfcSensor():
     def  get_cumulative():
         pass
 
-    def reset_cumulative()
+    def reset_cumulative():
+        pass
         #reset sensor
