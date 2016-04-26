@@ -8,7 +8,7 @@ class FlowSensor(Action):
 
     def __init__(self, name="FlowSensor"):
         super(FlowSensor, self).__init__(name)
-        print "init flow"
+        
 
 
     def setup(self):
@@ -16,7 +16,7 @@ class FlowSensor(Action):
         while True:
             delay = 5
             self.values=list()
-            
+
 
 
             quantity_flow = 20 #sensor  #guarda les dades del sensor en una variable
