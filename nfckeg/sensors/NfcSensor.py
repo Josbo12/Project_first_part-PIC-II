@@ -14,15 +14,15 @@ class NfcSensor(Action):
 
 
 
-    def setup(self, tagID):
+    def setup(self):
 
-
-        conn = sqlite3.connect('nfcdatabase.db')
+        tagID= "999988882"
+        conn = sqlite3.connect('/home/josep/Project_first_part-PIC-II/database.db')
         cursor = conn.execute("SELECT nfc from users where nfc=?" , (tagID,) )
         exist_nfc=cursor.fetchone()
         print "setupnfc", exist_nfc
 
-        if exist_nfc == None:
+        if exist_nfc != None:
 
             self.nfc = 1
             for a in self.FlowSensor:
