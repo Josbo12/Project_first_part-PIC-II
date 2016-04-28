@@ -3,12 +3,14 @@ from Channel import Channel
 import telepot
 
 
-class BEERBot(telepot.Bot):
-    """AmbrosioBot is my telegram bot"""
-    def __init__(self, token):
-        super(BEERBot, self).__init__(token)
+class BeerBoot(telepot.Bot):
+    """BeerBoot is my telegram bot"""
+    def __init__(self, token, usuaris):
+        super(BeerBoot, self).__init__(token)
         self.clist = None
         self.chat_id = None
+        self.users = usuaris
+
 
     def set_list(self, clist):
         self.clist = clist
@@ -17,11 +19,15 @@ class BEERBot(telepot.Bot):
         content_type, chat_type, chat_id = telepot.glance(msg)
         if content_type == 'text':
             command = msg['text']
-            if self.clist is not None:
-                self.clist.append(command)
-                self.chat_id = chat_id
+            print msg['from']['id']
+            if msg['from']['id'] in self.users:
+                if self.clist is not None:
+                    self.clist.append(command)
+                    self.chat_id = chat_id
+            else:
+                print "No autoritzat!"
 
-    def respond(self, response):
+    def respond(self,response):
         if self.chat_id is not None:
             self.sendMessage(self.chat_id, response)
 
@@ -29,9 +35,10 @@ class BEERBot(telepot.Bot):
 
 class TelegramChannel(Channel):
     """Channel class, received commands from telegram"""
-    def __init__(self, name="TelegramChannel"):
-        super(TelegramChannel, self).__init__(name)
-        self.bot = BEERBoot("clau bot")
+    def __init__(self, cfgtel=None, name="TelegramChannel"):
+        super(TelegramChannel, self).__init__(cfgtel, name)
+        token = self.cfgtel["telegram"]["token"]
+        self.bot = BeerBoot(token, self.cfgtel["telegram"]["usuaris"])
         self.messages = []
         self.bot.set_list(self.messages)
         self.bot.notifyOnMessage()
