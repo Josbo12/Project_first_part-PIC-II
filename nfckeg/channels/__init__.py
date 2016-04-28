@@ -1,6 +1,6 @@
 from Channel import Channel
-from TextChannel import TextChannel
+from ConsoleChannel import ConsoleChannel
 from TelegramChannel import TelegramChannel
 
 
-__all__ = ["Channel", "NfcChannel", "TelegramChannel"]
+__all__ = ["Channel", "TelegramChannel","ConsoleChannel"]
