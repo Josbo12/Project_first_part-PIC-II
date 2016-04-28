@@ -1,0 +1,9 @@
+class Channel(object):
+    """Channel class"""
+    def __init__(self, cfgtel, name):
+        super(Channel, self).__init__()
+        self.name = name
+        self.cfgtel = cfgtel
+
+    def respond(self, response):
+        print "RESPONSE: ", response
