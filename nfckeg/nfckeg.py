@@ -5,6 +5,7 @@ import database as db
 import sensors as sen
 import channels as ch
 from commandlist import CommandList
+from sensors import FlowSensor
 import actions as ac
 import sys
 import yaml
@@ -36,6 +37,7 @@ class nfckeg(object):
 
              self.sensors = []
              self.sensors.append(sen.NfcSensor())
+
              self.actions = []
              self.actions.append(ac.MusicPlayer())
              #self.sensors.append(sen.FlowSensor(tagID))
@@ -84,7 +86,7 @@ class nfckeg(object):
             response = None
             for a in self.actions:
                 if a.is_for_you(first_word):
-                    response = a.do(rest_words)
+                    response = a.do(first_word)
                     break
             else:
                 print "No t'entenc"
