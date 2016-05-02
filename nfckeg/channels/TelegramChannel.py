@@ -52,5 +52,5 @@ class TelegramChannel(Channel):
 
     def respond(self, response):
         if response is None:
-            response = "Command not understood"
+            response = "Usuari no registrat"
         self.bot.respond(response)
