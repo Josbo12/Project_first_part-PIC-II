@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import time
 import sqlite3
 from FlowSensor import FlowSensor
@@ -16,20 +18,24 @@ class NfcSensor(Action):
 
     def setup(self):
 
-        tagID= "3444"
-        conn = sqlite3.connect('/home/josep/Project_first_part-PIC-II/database.db')
-        cursor = conn.execute("SELECT nfc from users where nfc=?" , (tagID,) )
-        exist_nfc=cursor.fetchone()
-        print "setupnfc", exist_nfc
+        #while True:
 
-        if exist_nfc != None:
+            tagID= "3444"
+            conn = sqlite3.connect('/home/josep/Project_first_part-PIC-II/database.db')
+            cursor = conn.execute("SELECT nfc from users where nfc=?" , (tagID,) )
+            exist_nfc=cursor.fetchone()
+            print "NFC DETECTAT:", exist_nfc
+            print "Ja pots començar a beure"
 
-            self.nfc = 1
-            for a in self.FlowSensor:
-                a.setup(tagID)
+            if exist_nfc != None:
 
-        else:
-            self.nfc= 0
+                self.nfc = 1
+                for a in self.FlowSensor:
+                    a.setup(tagID)
+                    a.get_data(tagID)
+
+            else:
+                self.nfc= 0
 
 
 
