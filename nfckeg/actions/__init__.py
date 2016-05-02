@@ -1,5 +1,5 @@
 
 from Action import Action
-from MusicPlayer import MusicPlayer
+from TotalDrink import TotalDrink
 
-__all__ = ["Action", "MusicPlayer"]
+__all__ = ["Action", "TotalDrink"]
