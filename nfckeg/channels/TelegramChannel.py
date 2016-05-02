@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from Channel import Channel
 
 import telepot
@@ -19,7 +21,7 @@ class BeerBoot(telepot.Bot):
         content_type, chat_type, chat_id = telepot.glance(msg)
         if content_type == 'text':
             command = msg['text']
-            print msg['from']['id']
+            #print msg['from']['id']
             if msg['from']['id'] in self.users:
                 if self.clist is not None:
                     self.clist.append(command)
@@ -30,6 +32,7 @@ class BeerBoot(telepot.Bot):
     def respond(self,response):
         if self.chat_id is not None:
             self.sendMessage(self.chat_id, response)
+            print response
 
 
 
