@@ -16,13 +16,13 @@ class FlowSensor(Action):
 
     def setup(self,tagID):
 
-
+        values=[]
             #while tagID != None:
                 self.quantity_flow = float(50) #sensor guarda les dades del sensor en una variable
-                #self.values.append(quantity_flow)
-
-                #time.sleep(5)       #segons entre lectura i lectura
                 print " \nQuantitat beguda ara:",self.quantity_flow
+                #self.values.append(quantity_flow)
+                #time.sleep(5)       #segons entre lectura i lectura
+
             # begut = self.values[len(self.values-1)]-self.values(0)  ultima quantita registrada
                                                                     # menys la primera registrada
 
@@ -56,5 +56,6 @@ class FlowSensor(Action):
         pass
 
     def reset_cumulative():
+        self.quantity_flow=0
         pass
         #reset sensor
